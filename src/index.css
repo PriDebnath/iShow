@@ -1,0 +1,84 @@
+* {
+  transition: 0.4s;
+}
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  height: 100vh;
+}
+
+header {
+  font-size: 1.4rem;
+  padding: 0 2rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+input {
+  border-radius: 0.3rem;
+  font-size: 1.05rem;
+  padding: 0 0.5rem;
+  display: block;
+  width: 80%;
+}
+
+.movie_container {
+  margin: 2rem 0;
+  display: flex;
+  overflow: scroll;
+  background: rgba(37, 37, 37, 0.7);
+  height: 41vh;width: 100%;
+
+}
+.movie_container::-webkit-scrollbar {
+  display: none;
+}
+.movie {
+  position: relative;
+  margin: 1rem;
+  min-width: 150px;
+ width: 150px; 
+  min-height: 7rem;
+}
+.movie:hover {
+  transform: scale(1.05);
+}
+.movie_poster {
+  height: 100%;
+  width: 100%;
+  border-radius: 0.4rem;
+
+  display: block;
+}
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  height: 0;
+  opacity: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.movie:hover .overlay {
+  height: 3rem;
+  opacity: 1;
+}

@@ -8,13 +8,11 @@ function App() {
   let [movies, setMovies] = useState([]);
   let [searchVal, setSearchVal] = useState("toy");
   let [favouriteMovies, setFavouriteMovies] = useState([]);
- 
- 
-  useEffect(() => {   
+
+  useEffect(() => {
     getData();
   }, [searchVal]);
- 
- 
+
   let getData = async () => {
     try {
       let res = await fetch(
@@ -31,31 +29,28 @@ function App() {
       console.log(error);
     }
   };
- 
-  useEffect(()=>{
-    let localMovies =JSON.parse (localStorage.getItem('fav_movies'))
-    if (localMovies ) {
-        setFavouriteMovies(localMovies)
 
+  useEffect(() => {
+    let localMovies = JSON.parse(localStorage.getItem("fav_movies"));
+    if (localMovies) {
+      setFavouriteMovies(localMovies);
     }
-  },[])
-
+  }, []);
 
   function addToFavourite(movie) {
-
-    favouriteMovies.forEach((favouriteMovie)=>{
-
-     
-    if ( favouriteMovie.imdbID === movie.imdbID){
-      alert('Allready in favourite shows')
-      return 2
-    }else{
-       setFavouriteMovies([...favouriteMovies, movie]);
-    updateLocalStorage([...favouriteMovies,movie])
-    }
-
-    }
-    )
+    console.log(movie);
+    favouriteMovies.forEach((favouriteMovie) => {
+      if (favouriteMovie.imdbID === movie.imdbID) {
+        alert("Allready in favourite shows");
+throw new Error (
+  'Can not add duplicate'
+)     } 
+        
+    });
+    setFavouriteMovies([...favouriteMovies, movie]);
+        updateLocalStorage([...favouriteMovies, movie]);
+      console.log('in');
+    console.log(favouriteMovies);
   }
 
   function removeFromFavourite(movie) {
@@ -63,11 +58,11 @@ function App() {
       return favMovie !== movie;
     });
     setFavouriteMovies(filteredMovies);
-    updateLocalStorage(filteredMovies)
+    updateLocalStorage(filteredMovies);
   }
 
   function updateLocalStorage(movies) {
-    localStorage.setItem('fav_movies',JSON.stringify(movies))
+    localStorage.setItem("fav_movies", JSON.stringify(movies));
   }
   return (
     <div>
